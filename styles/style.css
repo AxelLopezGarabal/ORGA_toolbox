@@ -1,0 +1,214 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #f5f5f5;
+    overflow-x: hidden;
+}
+
+/* Contenedor principal del Header */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #981b32; /* Rojo institucional */
+    padding: 16px 24px;
+    height: 64px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Sección izquierda: Menú + Título */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Título */
+.header-title {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+/* Botón del Navicon (Menú) */
+.menu-button {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    transition: opacity 0.2s;
+}
+
+.menu-button:hover {
+    opacity: 0.8;
+}
+
+.menu-button svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Grupo de botones a la derecha */
+.header-actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* Botones de acción individuales */
+.icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    color: rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.icon-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.icon-button svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* --- Estilos del Menú Lateral Colapsable --- */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px; /* Escondido por defecto a la izquierda */
+    width: 280px;
+    height: 100%;
+    background-color: #b9b2b2;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    transition: left 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Cuando el menú está activo/abierto */
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eeeeee;
+    background-color: #981b32;
+}
+
+.sidebar-header h3 {
+    color: #ffffff;
+    font-size: 18px;
+}
+
+.close-button {
+    background: transparent;
+    border: none;
+    font-size: 28px;
+    color: #888;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close-button:hover {
+    color: #333;
+}
+
+/* Lista de navegación */
+.sidebar-menu {
+    list-style: none;
+    padding: 10px 0;
+}
+
+.sidebar-menu li a {
+    display: block;
+    padding: 14px 20px;
+    color: #444444;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+.sidebar-menu li a:hover {
+    background-color: #f1f3f5;
+    color: #981b32;
+}
+
+/* Fondo opaco (Overlay) */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* --- Variables y Estilos para Modo Oscuro --- */
+body.dark-mode {
+    background-color: #121212; /* Fondo general oscuro */
+    color: #e0e0e0;
+}
+
+/* Cambios en el Header durante el modo oscuro */
+body.dark-mode .main-header {
+    background-color: #5f1020; /* Un rojo más apagado/oscuro para no lastimar la vista */
+    border-top-color: #1a1a1a;
+}
+
+/* Cambios en el Menú Lateral durante el modo oscuro */
+body.dark-mode .sidebar {
+    background-color: #1e1e1e;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .sidebar-header {
+    background-color: #252525;
+    border-bottom-color: #333333;
+}
+
+body.dark-mode .sidebar-header h3,
+body.dark-mode .close-button {
+    color: #e0e0e0;
+}
+
+body.dark-mode .sidebar-menu li a {
+    color: #cccccc;
+}
+
+body.dark-mode .sidebar-menu li a:hover {
+    background-color: #2d2d2d;
+    color: #ff4a6b; /* Resaltado más brillante en la oscuridad */
+}
