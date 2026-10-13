@@ -43,7 +43,9 @@ allSameLength = (text, length) => {
 }
 hexa2bin = (text) => {
     return text.map(dir => {
-        var aux = dir.trim().slice(2); //remove 0x
+        console.log(dir);
+        var aux = dir.trim(); //remove 0x
+        aux = aux.slice(2);
         var bin = parseInt(aux, 16).toString(2);
         return addCerosL(aux, bin);
     });
@@ -51,31 +53,29 @@ hexa2bin = (text) => {
 addCerosL = (dir, bin) => {
     return bin.padStart(dir.trim().length * 4, '0');
 }
-
 function generarTabla(){
     let text = document.getElementById('dir_mem').value.split(',');
-    document.getElementById("t_res").style.display = "block"
-    const is_direct = document.getElementById(1).checked;
-
-    const tag = parseInt(document.getElementById('bit-tag').value);
-    const linea = is_direct? parseInt(document.getElementById('bit-linea').value) : 0;
-    const palabra = parseInt(document.getElementById('bit-palabra').value);
-    let res = dirrections(text, tag, linea, palabra, is_direct);
-    console.log(res);
-
     //check if all dirs are in the same format (hexadecimal or binary)
     if(!allHexa(text) && !allBin(text)){
         alert("Las direcciones de memoria deben estar en el mismo formato (hexadecimal o binario)");
         clearTable()
         return;
     }
-    allHexa(text) ? text = hexa2bin(text) : null;
+    document.getElementById("t_res").style.display = "block"
+    const is_direct = document.getElementById(1).checked;
+
+    const tag = parseInt(document.getElementById('bit-tag').value);
+    const linea = is_direct? parseInt(document.getElementById('bit-linea').value) : 0;
+    const palabra = parseInt(document.getElementById('bit-palabra').value);
     //check if all dirs are of the same length as the sum of tag, linea and palabra
+    allHexa(text) ? text = hexa2bin(text) : null;
     if(!allSameLength(text, tag + linea + palabra)){
         alert(is_direct? "Las direcciones de memoria deben tener la misma longitud que la suma de los bits destinado para tag, línea y palabra" : "Las direcciones de memoria deben tener la misma longitud que la suma de los bits destinado para tag y palabra");
         clearTable();
         return;
     };
+    let res = dirrections(text, tag, linea, palabra, is_direct);
+
     //check if the fields are valid (tag, linea, palabra)
 
     var cabecera = document.getElementById("cabecera");
