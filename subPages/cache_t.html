@@ -6,6 +6,7 @@
     <title>ORGA toolbox</title>
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/style_loader.css">
+    <link rel="stylesheet" href="../styles/style_cache_t.css">
 </head>
 <body>
 
@@ -114,16 +115,16 @@
                     <div class="zona-calcular">
                         <button
                             id="button"
-                            class="boton-calcular"
+                            class="generate-btn "
                             onclick="generarTabla()">
                             Generar tabla
                         </button>
                     </div>
 
                     <div id="t_res" class="resultado" style="display: none;">
-                        <table id="tabla" class="tabla">
-                            <thead id="cabecera">
-                                <tr>
+                        <table id="tabla" class="cache-table">
+                            <thead id="cabecera" class="cache-table">
+                                <tr id="tr" class="cache-table">
                                     
                                 </tr>
                             </thead>

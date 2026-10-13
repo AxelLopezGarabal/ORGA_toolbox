@@ -128,6 +128,7 @@ function rowHA(){
 } 
 function tableHeader(cell, text){
     cell.innerHTML = text;
+    cell.style.textAlign = "center";
 }
 function rowD(elem, tablaBody){
     var row = tablaBody.insertRow();
@@ -141,7 +142,7 @@ function rowD(elem, tablaBody){
         tableCell(cell2, elem.tag);
         tableCell(cell3, elem.linea);
         tableCell(cell4, elem.palabra);
-        tableCell(cell5, elem.af);
+        tableCellAF(cell5, elem.af);
     return row;
 }
 function rowA(elem, tablaBody){
@@ -154,7 +155,7 @@ function rowA(elem, tablaBody){
         tableCell(cell1, elem.dir);
         tableCell(cell2, elem.tag);
         tableCell(cell4, elem.palabra);
-        tableCell(cell5, elem.af);
+        tableCellAF(cell5, elem.af);
     return row;
 }
 function checkAFD(tag, linea, cache){
@@ -182,6 +183,22 @@ function checkAFA(tag, cache){
 function tableCell(cell, text){
     cell.innerHTML = text;
     cell.style.textAlign = "center";
+}
+function tableCellAF(cell, text){
+    cell.innerHTML = text;
+    cell.style.textAlign = "center";    
+    cell.style.fontWaight = "bold";
+    cell.style.padding = "2px 8px";
+    cell.style.borderRadius = "4px";
+    if(text === 'Acieto'){
+        cell.style.color = " #04d361"; 
+        cell.style.background =" rgba(4, 211, 97, 0.1)" 
+    }
+    else {
+        cell.style.color = "#f75a68";
+        cell.style.background = "rgba(247, 90, 104, 0.1)";
+    }
+
 }
 function clearTable(){
     var cabecera = document.getElementById("cabecera");
