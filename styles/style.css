@@ -212,3 +212,26 @@ body.dark-mode .sidebar-menu li a:hover {
     background-color: #2d2d2d;
     color: #ff4a6b; /* Resaltado más brillante en la oscuridad */
 }
+
+.generate-btn {
+    background-color: #61DBFB;
+    color: #2e248b;
+    border: none;
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.generate-btn:hover {
+    background-color: #9466ff;
+}
+
+.generate-btn:active {
+    transform: scale(0.98);
+}

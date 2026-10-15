@@ -1,7 +1,5 @@
 /* 1. Configuración General y Tipografía */
 body {
-    background-color: #121214;
-    color: #e1e1e6;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 20px;
@@ -12,7 +10,6 @@ body {
     max-width: 1000px;
     margin: 0 auto;
     margin-top: 20px;
-    background: #1d1d22;
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
@@ -20,14 +17,12 @@ body {
 
 /* 2. Títulos y Secciones */
 h1 {
-    color: #ffffff;
     font-size: 24px;
     margin-bottom: 5px;
     font-weight: 600;
 }
 
 h3 {
-    color: #9696a0;
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 1px;
