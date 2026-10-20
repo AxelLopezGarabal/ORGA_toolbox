@@ -1,13 +1,37 @@
-* {
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    padding: 20px;
 }
-
+/*
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background-color: #f5f5f5;
     overflow-x: hidden;
+}
+*/
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* 2. Títulos y Secciones */
+h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 /* Contenedor principal del Header */
@@ -176,6 +200,34 @@ body {
     opacity: 1;
 }
 
+
+/* Opciones de Mapeo (Radio Buttons) */
+.mapping-options {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.mapping-options label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+}
+
+input[type="text"], input[type="number"], textarea {
+    background-color: #ffffff;
+    border: 2px solid #dcdce2;
+    border-radius: 6px;
+    color: #121214;
+    padding: 10px 14px;
+    font-size: 15px;
+    font-family: 'Courier New', Courier, monospace; /* Ideal para datos binarios/hex */
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+
 /* --- Variables y Estilos para Modo Oscuro --- */
 body.dark-mode {
     background-color: #121212; /* Fondo general oscuro */
@@ -212,8 +264,29 @@ body.dark-mode .sidebar-menu li a:hover {
     background-color: #2d2d2d;
     color: #ff4a6b; /* Resaltado más brillante en la oscuridad */
 }
+body.dark-mode input {
+    background-color: #29292e;
+    border: 2px solid #323238;
+    border-radius: 6px;
+    color: #ffffff;
+    padding: 10px 14px;
+    font-size: 15px;
+    font-family: 'Courier New', Courier, monospace; /* Ideal para datos binarios/hex */
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
 
-.generate-btn {
+body.dark-mode textarea {
+    background-color: #29292e;
+    border: 2px solid #323238;
+    border-radius: 6px;
+    color: #ffffff;
+    padding: 10px 14px;
+    font-size: 15px;
+    font-family: 'Courier New', Courier, monospace; /* Ideal para datos binarios/hex */
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.btn {
     background-color: #61DBFB;
     color: #2e248b;
     border: none;
@@ -228,10 +301,53 @@ body.dark-mode .sidebar-menu li a:hover {
     margin-bottom: 30px;
 }
 
-.generate-btn:hover {
+.btn:hover {
     background-color: #9466ff;
 }
 
-.generate-btn:active {
+.btn:active {
     transform: scale(0.98);
+}
+
+@media screen and (max-width: 800px) {
+    .header-contenido {
+        min-height: 65px;
+    }
+
+    .menu {
+        display: none;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        right: 0;
+
+        background: #ffffff;
+
+        flex-direction: column;
+        border-bottom: 1px solid #dce7f2;
+        box-shadow: 0 10px 20px rgba(16, 42, 67, 0.08);
+
+        padding: 15px;
+    }
+
+    .menu a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .menu.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    main h1 {
+        font-size: 1.7rem;
+    }
+
+    main table {
+        width: 80%;
+    }
 }

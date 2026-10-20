@@ -110,7 +110,7 @@ function rowHD(){
         tableHeader(cell2, "Tag");
         tableHeader(cell3, "Línea");
         tableHeader(cell4, "Palabra");
-        tableHeader(cell5, "Acieto/Fallo");
+        tableHeader(cell5, "A/F");
     return row;
 }
 function rowHA(){
@@ -123,7 +123,7 @@ function rowHA(){
         tableHeader(cell1, "Dirección de memoria");
         tableHeader(cell2, "Tag");
         tableHeader(cell4, "Palabra");
-        tableHeader(cell5, "Acieto/Fallo");
+        tableHeader(cell5, "A/F");
     return row;
 } 
 function tableHeader(cell, text){

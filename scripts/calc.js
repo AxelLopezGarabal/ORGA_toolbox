@@ -361,7 +361,13 @@ function elem(elemId){
       console.log(answer)
       if(answer.length == 0) { throw new Error("faltan datos para resolver");}
       else{
-        answer.forEach(e=> {temp = document.createElement('li');temp.textContent = e;list.appendChild(temp);});
+        answer.forEach(e=> {
+          temp = document.createElement('li');
+          temp.style.fontWaight = "bold";
+          temp.textContent = e;
+          list.appendChild(temp);
+  
+        });
       }
     } catch (error) {
       console.log(error);

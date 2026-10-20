@@ -1,0 +1,261 @@
+.zona-calcular {
+    display: flex;
+    justify-content: center;
+    margin-top: 35px;
+}
+
+.tarjeta-resultado {
+    width: min(900px, 92%);
+    margin: 10px auto 70px;
+    padding: 30px;
+    background: #ffffff;
+    border: 1px solid #cfe0ef;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(16, 42, 67, 0.08);
+    display: none;
+}
+
+.tarjeta-resultado.activo {
+    display: block;
+}
+
+.resultado-titulo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e5edf5;
+}
+
+.resultado-icono {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #dcfce7;
+    color: #16a34a;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.resultado-titulo h2 {
+    color: #102a43;
+}
+
+.tarjeta-resultado ul {
+    padding: 20px 0 0 20px;
+    color: #486581;
+}
+
+.diagram-container-cajas {
+    position: relative;
+    width: 104%;
+    /* min-height: 500px; */
+    display: flex;
+    justify-content: center;
+    /* align-items: flex-start; */
+    /* overflow-x: auto; */
+    padding: 10px;
+}
+
+.container-cajas {
+    display: grid;
+    grid-template-columns: 450px 450px;
+    justify-content: center;
+}
+
+.column-cajas {
+    padding: 20px;
+    width: 450px;
+    height: 450px;
+}
+
+/* MEMORIA PRINCIPAL */
+
+.mem-principal-box {
+    position: relative;
+    width: 190px;
+    left: 140px;
+    height: 320px;
+    border: 3px solid #000000;
+    background: linear-gradient(
+            to bottom right,
+            transparent calc(50% - 1px),
+            #9fb3c8 calc(50% - 1px),
+            #9fb3c8 calc(50% + 1px),
+            transparent calc(50% + 1px)
+        );
+}
+
+/* MEMORIA CACHE */
+
+.mem-cache-box {
+    position: relative;
+    top: 140px;
+    width: 205px;
+    height: 100px;
+
+    border: 3px solid #000000;
+
+    background:
+        linear-gradient(
+            to bottom right,
+            transparent calc(50% - 1px),
+            #9fb3c8 calc(50% - 1px),
+            #9fb3c8 calc(50% + 1px),
+            transparent calc(50% + 1px)
+        );
+}
+
+/* CAMPOS INTERNOS */
+
+.box-internal-mp {
+    position: relative;
+    top: 43%;
+    left: 0;
+    margin: 4px;
+    width: 88px;
+}
+
+.box-internal-mc {
+    position: relative;
+    top: 40%;
+    left: 5px;
+}
+
+.bracket {
+    border: 2px solid #102a43;
+}
+
+/* CORCHETES */
+
+.bracket-left-mp {
+    border-right-color: transparent;
+    width: 12px;
+    height: 320px;
+    position: relative;
+    bottom: 404px;
+    left: 110px;
+}
+
+.bracket-right-top-mp {
+    border-left-color: transparent;
+    width: 15px;
+    height: 75px;
+    position: relative;
+    bottom: 325px;
+    left: 340px;
+}
+
+.bracket-right-mc {
+    position: relative;
+    border-left-color: transparent;
+    width: 15px;
+    height: 100px;
+    top: 16px;
+    left: 215px;
+}
+
+.bracket-bottom-mc {
+    position: relative;
+    top: 150px;
+    border-top-color: transparent;
+    width: 202px;
+    height: 15px;
+    left: 0;
+}
+
+.bracket-bottom-mp {
+    position: relative;
+    bottom: 400px;
+    border-top-color: transparent;
+    width: 187px;
+    height: 15px;
+    left: 139px;
+}
+
+.bottom-box {
+    position: relative;
+    left: -5px;
+}
+
+/* SELECTORES DE UNIDAD DEL DIAGRAMA */
+
+.container-cajas select {
+    width: 65px;
+    height: 28px;
+
+    border: 1px solid #cbd8e5;
+    border-radius: 6px;
+
+    background: #ffffff;
+    color: #172b4d;
+}
+
+/* CONTENEDORES LINEALES */
+
+.container-cajas .contenedor-lineal {
+    position: relative;
+    top: 43%;
+    left: -4px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+@media screen and (max-width: 900px) {
+
+    body {
+        min-width: 900px;
+        overflow-x: auto;
+    }
+
+    .header {
+        min-width: 900px;
+    }
+
+    main {
+        min-width: 900px;
+    }
+}
+
+.memNcell {
+    position: relative;
+    right: 140px;
+    top: 150px;
+    width: 80px;
+}
+
+.memBxq {
+    position: relative;
+    left: 20px;
+    top: 15px;
+    width: 96px;
+}
+
+.cacheboxI {
+    width: 104px;
+}
+
+.cache-r {
+    position: relative;
+    left: 25px;
+    top: 25px;
+    width: 77px;
+}
+
+.capCellMP {
+    width: 97px;
+}
+
+.capLine {
+    width: 95px;
+}
+
+.container-cajas .bottom-boxes {
+    position: relative;
+    left: 1px;
+    top: 20px;
+}
