@@ -126,7 +126,7 @@
 }
 
 .bracket {
-    border: 2px solid #102a43;
+    border: 2px solid #000000;
 }
 
 /* CORCHETES */
@@ -169,11 +169,11 @@
 
 .bracket-bottom-mp {
     position: relative;
-    bottom: 400px;
+    bottom: 394px;
     border-top-color: transparent;
-    width: 187px;
+    width: 193px;
     height: 15px;
-    left: 139px;
+    left: 140px;
 }
 
 .bottom-box {
@@ -258,4 +258,88 @@
     position: relative;
     left: 1px;
     top: 20px;
+}
+
+body.dark-mode .bracket {
+    border: 2px solid #fcfcfc;
+}
+
+body.dark-mode .bracket-left-mp {
+    border-right-color: transparent;
+    width: 12px;
+    height: 320px;
+    position: relative;
+    bottom: 404px;
+    left: 110px;
+}
+
+body.dark-mode .bracket-right-top-mp {
+    border-left-color: transparent;
+    width: 15px;
+    height: 75px;
+    position: relative;
+    bottom: 325px;
+    left: 340px;
+}
+
+body.dark-mode .bracket-right-mc {
+    position: relative;
+    border-left-color: transparent;
+    width: 15px;
+    height: 100px;
+    top: 16px;
+    left: 215px;
+}
+
+body.dark-mode .bracket-bottom-mc {
+    position: relative;
+    top: 150px;
+    border-top-color: transparent;
+    width: 202px;
+    height: 15px;
+    left: 0;
+}
+
+body.dark-mode .bracket-bottom-mp {
+    position: relative;
+    bottom: 400px;
+    border-top-color: transparent;
+    width: 187px;
+    height: 15px;
+    left: 139px;
+}
+
+body.dark-mode .mem-principal-box {
+    position: relative;
+    width: 190px;
+    left: 140px;
+    height: 320px;
+    border: 3px solid #ffffff;
+    background: linear-gradient(
+            to bottom right,
+            transparent calc(50% - 1px),
+            #9fb3c8 calc(50% - 1px),
+            #9fb3c8 calc(50% + 1px),
+            transparent calc(50% + 1px)
+        );
+}
+
+/* MEMORIA CACHE */
+
+body.dark-mode .mem-cache-box {
+    position: relative;
+    top: 140px;
+    width: 205px;
+    height: 100px;
+
+    border: 3px solid #ffffff;
+
+    background:
+        linear-gradient(
+            to bottom right,
+            transparent calc(50% - 1px),
+            #9fb3c8 calc(50% - 1px),
+            #9fb3c8 calc(50% + 1px),
+            transparent calc(50% + 1px)
+        );
 }
