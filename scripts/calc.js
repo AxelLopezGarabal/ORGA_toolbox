@@ -52,14 +52,37 @@ function elem(elemId){
   //log
   log2 = (val) => Math.log(val) / Math.log(2);
 
+  function resBody(msg, form, apl, concl){
+    return {mesaje: msg, formula: form, aplicada:apl, conclucion: concl}
+  }
+  
+  let msgs = {
+    tag: "Para calcular el Tag en asociativo es necesario agrupar las celdas en las cantidades especificadas en celdas por bloque",
+    tagD: "Es la cantidad de bits destinada a identificar los bloques que tiene asignada esa linea",
+    nCell: "Es necesario calcular la cantidad de celdas",
+    capL: "Es necesario calcular la cantidad de celdas",
+  }
+
+  let form = {
+    nCell: "nCell = capMemP / capCell",
+    capCell: "capCell = cap de line / cell x blq",
+    asscTag: "Tag(nro de blq) = n cell / cell x blq",
+    dirTag: "Tag = nro de bloq / n lieas",
+    cxb: "cell x blq = cap de line / cap de cell",
+    capL: "cap line = cap de cache / n lines = ",
+    nBloq: "Nro de blq = n cell / cell x blq",
+    nLine: "N lines = cap cache / cap line",
+    palabra: "Palabra = cell x blq",
+    read: "Dado por el enunciado",
+  }
   calcAssocS = (temp) => {//calculo de assoc con toda la info
     if(isEmpty(temp) && checkAssocS()){
       const ncell = elem("nCell").value;
       const cxb = elem("CellxBloq").value;
       const tag = safeDiv(ncell, cxb);
       temp.push(
-        "Palabra = cell x blq = "+cxb+" celdas por bloque => "+log2(cxb)+" bits para palabra" , 
-        "Tag(nro de blq) = n cell / cell x blq = "+ncell+" / "+cxb+" = "+tag+" => "+log2(tag)+" bits para tag"
+        resBody("",  form.palabra, " Palabra = cell x bloq = " + cxb + " celdas por bloque", log2(cxb)+" bits para palabra"),
+        resBody(msgs.tag, form.asscTag, ""+ncell+" / "+cxb+" = " +tag+" bloques", log2(tag)+" bits para tag")
       );
       return temp;
     }
@@ -75,9 +98,9 @@ function elem(elemId){
       const cxb = elem("CellxBloq").value;
       const tag = safeDiv(ncell, cxb)
       temp.push(
-        "nCell = capMemP / capCell = "+capM+unitM+" / "+capC+unitC+" = "+ncell+" celdas de memoria",
-        "Palabra = cell x blq = "+cxb+" celdas por bloque => "+log2(cxb)+" bits para palabra" , 
-        "Tag(nro de blq) = n cell / cell x blq = "+ncell+" / "+cxb+" = "+tag+" => "+log2(tag)+" bits para tag"
+        resBody(msgs.nCell, form.nCell, capM+unitM+" / "+capC+unitC+" ", ncell+" celdas de memoria"),
+        resBody("", form.palabra, cxb+" celdas por bloque", log2(cxb)+" bits para palabra"),
+        resBody(msgs.tag, form.asscTag, ncell+" / "+cxb+" = "+tag, log2(tag)+" bits para tag")
       );
       return temp;
     }
@@ -94,10 +117,10 @@ function elem(elemId){
       const ncell = safeDivP(capM, unitM, capC, unitL).r;
       const tag = safeDiv(ncell, cxb);
       temp.push(
-        "capCell = cap de line / cell x blq = " +capL+unitL+ " / "+cxb+" = "+capC+unitL,
-        "nCell = capMemP / capCell = "+capM+unitM + " / "+capC+unitL+" = "+ncell+" celdas de memoria",
-        "Palabra = cell x blq = "+cxb+" celdas por bloque => "+log2(cxb)+" bits para palabra" , 
-        "Tag(nro de blq) = n cell / cell x blq = "+ncell+" / "+cxb+" = "+tag+" => "+log2(tag)+" bits para tag"
+        resBody(msgs.capL, form.capCell, capL+unitL+ " / "+cxb, capC+unitL+" de capacidad de celda"),
+        resBody(msgs.nCell, form.nCell, capM+unitM + " / "+capC+unitL+" = "+ncell, ncell+" celdas de memoria"),
+        resBody("", form.palabra, cxb+" celdas por bloque", log2(cxb)+" bits para palabra"),
+        resBody(msgs.tag, form.asscTag, ncell+" / "+cxb+" = "+tag, log2(tag)+" bits para tag"),
       );
       return temp;
     }
@@ -115,10 +138,10 @@ function elem(elemId){
       const ncell = safeDivP(capM, unitM, capC, unitC).r;
       const tag = safeDiv(ncell, cxb);
       temp.push(
-        "cell x blq = cap de line / cap de cell = "+capL+unitL+" / "+capC+unitC+" = "+cxb+" celdas por bloque",
-        "nCell = capMemP / capCell = "+capM+unitM + " / "+capC+unitC+" = "+ncell+" celdas de memoria",
-        "Palabra = cell x blq = "+cxb+" celdas por bloque => "+log2(cxb)+" bits para palabra" , 
-        "Tag(nro de blq) = n cell / cell x blq = "+ncell+" / "+cxb+" = "+tag+" => "+log2(tag)+" bits para tag"
+        resBody("", form.cxb, capL+unitL+" / "+capC+unitC+" = "+cxb, cxb+" celdas por bloque"),
+        resBody(msgs.nCell, form.nCell, capM+unitM + " / "+capC+unitC+" = "+ncell, ncell+" celdas de memoria"),
+        resBody("", form.palabra, cxb+" celdas por bloque", log2(cxb)+" bits para palabra"),
+        resBody(msgs.tag, form.asscTag, ncell+" / "+cxb+" = "+tag, log2(tag)+" bits para tag"),
       );
       return temp;
     }
@@ -139,11 +162,11 @@ function elem(elemId){
       const ncell = safeDivP(capM, unitM, capC, unitC).r;
       const tag = safeDiv(ncell, cxb);
       temp.push(
-        "cap line = cap de cache / n lines = "+capCache+unitMC+" / "+nl+" = "+capL+unitMC+" cap de linea",
-        "cell x blq = cap de line / cap de cell = "+capL+unitMC+" / "+capC+unitC+" = "+cxb+" celdas por bloque",
-        "nCell = capMemP / capCell = "+capM+unitM + " / "+capC+unitC+" = "+ncell+" celdas de memoria",
-        "Palabra = cell x blq = "+cxb+" celdas por bloque => "+log2(cxb)+" bits para palabra" , 
-        "Tag(nro de blq) = n cell / cell x blq = "+ncell+" / "+cxb+" = "+tag+" => "+log2(tag)+" bits para tag"
+        resBody("", form.capL, capCache+unitMC+" / "+nl+" = "+capL+unitMC, capL+unitMC+" cap de linea"),
+        resBody("", form.cxb, capL+unitL+" / "+capC+unitC+" = "+cxb, cxb+" celdas por bloque"),
+        resBody(msgs.nCell, form.nCell, capM+unitM + " / "+capC+unitC+" = "+ncell, ncell+" celdas de memoria"),
+        resBody("", form.palabra, cxb+" celdas por bloque", log2(cxb)+" bits para palabra"),
+        resBody(msgs.tag, form.asscTag, ncell+" / "+cxb+" = "+tag, log2(tag)+" bits para tag"),
       );
       return temp;
     }
@@ -162,10 +185,10 @@ function elem(elemId){
       const cxb = safeDivP(capL, unitMC, capC, unitC).r;
       const tag = safeDiv(nCell, cxb);
       temp.push(
-        "cap line = cap de cache / n lines = "+capCache+unitMC+" / "+nl+" = "+capL+unitMC+" cap de linea",
-        "cell x blq = cap de line / cap de cell = "+capL+unitMC+" / "+capC+unitC+" = "+cxb+" celdas por bloque",
-        "Palabra = cell x blq = "+cxb+" celdas por bloque => "+log2(cxb)+" bits para palabra" , 
-        "Tag(nro de blq) = n cell / cell x blq = "+nCell+" / "+cxb+" = "+tag+" => "+log2(tag)+" bits para tag"
+        resBody("", form.capL, capCache+unitMC+" / "+nl+" = "+capL+unitMC, capL+unitMC+" cap de linea"),
+        resBody("", form.cxb, capL+unitMC+" / "+capC+unitC+" = "+cxb, cxb+ " celdas por bloque"),
+        resBody("", form.palabra, cxb+" celdas por bloque", log2(cxb)+" bits para palabra"),
+        resBody(msgs.tag, form.asscTag, nCell+" / "+cxb+" = "+tag, log2(tag)+" bits para tag"),
       );
       return temp;
     }
@@ -181,9 +204,9 @@ function elem(elemId){
       const ncell = elem('nCell').value;
       const tag = safeDiv(ncell, cxb);
       temp.push(
-        "cell x blq = cap de line / cap de cell = "+capL+unitL+" / "+capC+unitC+" = "+cxb+" celdas por bloque",
-        "Palabra = cell x blq = "+cxb+" celdas por bloque => "+log2(cxb)+" bits para palabra" , 
-        "Tag(nro de blq) = n cell / cell x blq = "+ncell+" / "+cxb+" = "+tag+" => "+log2(tag)+" bits para tag"
+        resBody("", form.cxb, capL+unitMC+" / "+capC+unitC+" = "+cxb, cxb+ " celdas por bloque"),
+        resBody("", form.palabra, cxb+" celdas por bloque", log2(cxb)+" bits para palabra"),
+        resBody(msgs.tag, form.asscTag, ncell+" / "+cxb+" = "+tag, log2(tag)+" bits para tag"),
       );
       return temp;
     }
@@ -197,16 +220,16 @@ function elem(elemId){
       const nb = ncell / cxb;
       const tag = nb / nl;
       temp.push(
-        "Palabra = cell x blq = "+cxb+" celdas por bloque => "+log2(cxb)+" bits para palabra" ,
-        "Nro de blq = n cell / cell x blq = "+ncell+" / "+cxb+" = "+nb+" => "+log2(nb)+" bits para bloque", 
-        "Nro de linea = n lieas = "+nl+"lineas => "+log2(nl)+" bits para linea",
-        "Tag = nro de bloq / n lieas = "+nb+" / "+nl+" = "+tag+" => se necesitan "+log2(tag)+" bits para el tag"
+        resBody("", form.palabra, cxb+" celdas por bloque", log2(cxb)+" bits para palabra"),
+        resBody("", form.nBloq, ncell+" / "+cxb+" = "+nb, log2(nb)+" bits para bloque"),
+        resBody("", form.nLine, nl+"lineas", log2(nl)+" bits para linea"),
+        resBody(msgs.tagD, form.dirTag, nb+" / "+nl+" = "+tag, log2(tag)+" bits para el tag")
       );
       return temp;
     }
     else{ return temp;}
   };
-  calcDirP = (temp) => {//calculo de directo con la cap de cache y de linea
+  calcDirP = (temp) => {//calculo de directo con la nCell, cxb, cap de cache, de la celda y de linea
     unitC = elem('capCachePeso').value;
     unitL = elem('capLinePeso').value;
     if(isEmpty(temp) && checkDirP()){
@@ -218,10 +241,10 @@ function elem(elemId){
       const nb = safeDiv(ncell, cxb);
       const tag = safeDiv(nb, nl);
       temp.push(
-        "Palabra = cell x blq = "+cxb+" celdas por bloque => "+log2(cxb)+" bits para palabra" ,
-        "Nro de blq = n cell / cell x blq = "+ncell+" / "+cxb+" = "+nb+" => "+log2(nb)+" bits para bloque", 
-        "N lines = cap cache / cap line = "+capC+unitC+" / "+capL+unitL+" = "+nl+" lineas => "+log2(nl)+" bits para linea",
-        "Tag = nro de bloq / n lieas = "+nb+" / "+nl+" = "+tag+" => se necesitan "+log2(tag)+" bits para el tag"
+        resBody("", form.palabra, cxb+" celdas por bloque", log2(cxb)+" bits para palabra"),
+        resBody("", form.nBloq, ncell+" / "+cxb+" = "+nb, log2(nb)+" bits para bloque"),
+        resBody("", form.nLine, capC+unitC+" / "+capL+unitL+" = "+nl+" lineas", log2(nl)+" bits para linea"),
+        resBody(msgs.tagD, form.dirTag, nb+" / "+nl+" = "+tag, log2(tag)+" bits para el tag"),
       );
       return temp;
     }
@@ -240,11 +263,11 @@ function elem(elemId){
       const nb = safeDiv(ncell, cxb);ncell / cxb;
       const tag = safeDiv(nb, nl);
       temp.push(
-        "cap line = cap de cell * cell x blq = "+capCell+unitCell+" * "+cxb+" => "+capL+"cap de linea",
-        "Palabra = cell x blq = "+cxb+" celdas por bloque => "+log2(cxb)+" bits para palabra" ,
-        "Nro de blq = n cell / cell x blq = "+ncell+" / "+cxb+" = "+nb+" => "+log2(nb)+" bits para bloque", 
-        "N lines = cap cache / cap line = "+capC+unitC+" / "+capL+unitL+" = "+nl+" lineas => "+log2(nl)+" bits para linea",
-        "Tag = nro de bloq / n lieas = "+nb+" / "+nl+" = "+tag+" => se necesitan "+log2(tag)+" bits para el tag"
+        resBody("", form.capL, capCell+unitCell+" * "+cxb, capL+unitC+" cap de linea"),
+        resBody("", form.palabra, cxb+" celdas por bloque", log2(cxb)+" bits para palabra"),
+        resBody("", form.nBloq, ncell+" / "+cxb+" = "+nb, log2(nb)+" bits para bloque"),
+        resBody("", form.nLine, capC+unitC+" / "+capL+unitL+" = "+nl+" lineas", log2(nl)+" bits para linea"),
+        resBody(msgs.tagD, form.dirTag, nb+" / "+nl+" = "+tag, log2(tag)+" bits para el tag"),
       );
       return temp;
     }
@@ -265,12 +288,12 @@ function elem(elemId){
       const nb = safeDiv(ncell, cxb);
       const tag = safeDiv(nb, nl);
       temp.push(
-        "ncell = cap de mem / cap de cell = "+capM+unitM+" / "+capCell+unitCell+" => "+ncell+" celdas de memoria",
-        "cap line = cap de cell * cell x blq = "+capCell+unitCell+" * "+cxb+" => "+capL+"cap de linea",
-        "Palabra = cell x blq = "+cxb+" celdas por bloque => "+log2(cxb)+" bits para palabra" ,
-        "Nro de blq = n cell / cell x blq = "+ncell+" / "+cxb+" = "+nb+" => "+log2(nb)+" bits para bloque", 
-        "N lines = cap cache / cap line = "+capC+unitC+" / "+capL+unitL+" = "+nl+" lineas => "+log2(nl)+" bits para linea",
-        "Tag = nro de bloq / n lieas = "+nb+" / "+nl+" = "+tag+" => se necesitan "+log2(tag)+" bits para el tag"
+        resBody("", form.nCell, capM+unitM+" / "+capCell+unitCell, ncell+" celdas de memoria"),
+        resBody("", form.capL, capCell+unitCell+" * "+cxb, capL+"cap de linea"),
+        resBody("", form.palabra,cxb+" celdas por bloque", log2(cxb)+" bits para palabra"),
+        resBody("", form.nBloq, ncell+" / "+cxb+" = "+nb, log2(nb)+" bits para bloque"),
+        resBody("", form.nLine, capC+unitC+" / "+capL+unitL+" = "+nl, log2(nl)+" bits para linea"),
+        resBody(msgs.tagD, form.dirTag, nb+" / "+nl+" = "+tag, log2(tag)+" bits para el tag"),
       );
       return temp;
     }
@@ -363,8 +386,11 @@ function elem(elemId){
       else{
         answer.forEach(e=> {
           temp = document.createElement('li');
-          temp.style.fontWaight = "bold";
-          temp.textContent = e;
+          temp.innerHTML = `
+            <div class="formula">`+e.formula+`</div>
+            <div class="formula">`+e.aplicada+`</div>
+            <div class="resultado">`+e.conclucion+`</div>
+          `;
           list.appendChild(temp);
   
         });
